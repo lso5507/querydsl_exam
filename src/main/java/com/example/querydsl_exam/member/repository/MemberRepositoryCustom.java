@@ -8,7 +8,9 @@ import org.springframework.util.StringUtils;
 import com.example.querydsl_exam.member.dto.MemberDto;
 import com.example.querydsl_exam.member.entity.Member;
 import com.example.querydsl_exam.member.entity.QMember;
+import com.example.querydsl_exam.member.vo.MemberVo;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -28,5 +30,15 @@ public class MemberRepositoryCustom {
 			.where(builder)
 			.fetch();
 	}
-
+	public List<MemberVo> searchByBuilderToMemberVo(MemberDto memberDto){
+		QMember member=QMember.member;
+		BooleanBuilder builder= new BooleanBuilder();
+		if(StringUtils.hasText(memberDto.getName())){
+			builder.and(member.name.contains(memberDto.getName()));
+		}
+		return queryFactory.select(Projections.constructor(MemberVo.class,member.name))
+			.from(member)
+			.where(builder)
+			.fetch();
+	}
 }

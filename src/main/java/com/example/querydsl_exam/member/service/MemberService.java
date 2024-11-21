@@ -8,6 +8,7 @@ import com.example.querydsl_exam.member.dto.MemberDto;
 import com.example.querydsl_exam.member.entity.Member;
 import com.example.querydsl_exam.member.repository.MemberRepository;
 import com.example.querydsl_exam.member.repository.MemberRepositoryCustom;
+import com.example.querydsl_exam.member.vo.MemberVo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,9 @@ public class MemberService {
 	}
 	public List<Member>findAllByName(MemberDto memberDto){
 		return memberRepositoryCustom.searchByBuilder(memberDto);
+	}
+	public List<MemberVo>findAllByNameToVo(MemberDto memberDto){
+		return memberRepositoryCustom.searchByBuilderToMemberVo(memberDto);
 	}
 
 

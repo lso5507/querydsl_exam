@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.querydsl_exam.member.dto.MemberDto;
 import com.example.querydsl_exam.member.entity.Member;
+import com.example.querydsl_exam.member.vo.MemberVo;
 
 @SpringBootTest
 class MemberServiceTest {
@@ -32,6 +33,16 @@ class MemberServiceTest {
 		MemberDto memberDto = new MemberDto("lee");
 		//when
 		List<Member> resultList = memberService.findAllByName(memberDto);
+		//then
+		Assertions.assertEquals(2,resultList.size());
+
+	}
+	@Test
+	void findAllByNameToVo() {
+		//given
+		MemberDto memberDto = new MemberDto("lee");
+		//when
+		List<MemberVo> resultList = memberService.findAllByNameToVo(memberDto);
 		//then
 		Assertions.assertEquals(2,resultList.size());
 
