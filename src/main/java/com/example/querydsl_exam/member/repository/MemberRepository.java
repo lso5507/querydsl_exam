@@ -5,5 +5,5 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
 import com.example.querydsl_exam.member.entity.Member;
 
-public interface MemberRepository extends JpaRepository<Member,Long>, QuerydslPredicateExecutor<Member> {
+public interface MemberRepository extends JpaRepository<Member,Long>{
 }
